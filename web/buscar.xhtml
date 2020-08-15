@@ -13,6 +13,7 @@
                 <h:outputScript library="js" name="spanishLocale.js"/>
             </h:head>
             <ui:define name="content">
+                <div id="contenedor">
                 <h1>Consulta entrada/salida</h1>
                 <h:form>
                     <h:panelGrid columns="3">
@@ -33,6 +34,12 @@
                        Salida #{hor2.salida} 
                     </p:dataList>
                 </h:form>
+                <button id="btnCapturar">Tomar Reporte de registros</button>
+                                  <div id="contenedorCanvas" style="border: 1px solid red;">
+  </div>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
+                      <script src="script.js"></script>
+                </div>
             </ui:define>
 
         </ui:composition>
