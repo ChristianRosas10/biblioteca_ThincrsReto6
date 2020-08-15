@@ -21,12 +21,16 @@
                             <f:selectItems value="#{buscarController.nusuarios}" var="us" itemLabel="#{us.id}, #{us.nombre}" itemValue="#{us.id}"/>
                         </p:selectOneMenu>
 
-                        <p:commandButton icon="ui-icon-search" value="Buscar" update="lista" actionListener="#{buscarController.buscarHorario()}"/>
+                        <p:commandButton icon="ui-icon-search" value="Buscar entradas" update="lista" actionListener="#{buscarController.buscarHorario()}"/>
                     </h:panelGrid>
 
                     <p:dataList id="lista" emptyMessage="No hay resultados" value="#{buscarController.nhorarios}" var="hor" >
                        Entrada #{hor.entrada} 
-                       Salida #{hor.entrada}
+                      
+                    </p:dataList>
+                   <p:commandButton icon="ui-icon-search" value="Buscar salidas" update="lista2" actionListener="#{buscarController.buscarHorario2()}"/>
+                   <p:dataList id="lista2" emptyMessage="No hay resultados" value="#{buscarController.nhorarios2}" var="hor2" >
+                       Salida #{hor2.salida} 
                     </p:dataList>
                 </h:form>
             </ui:define>

@@ -30,4 +30,5 @@ public interface Horarios2FacadeLocal {
 
     int count();
     
+    List<Horarios2> buscarHorario(int idUsuario) throws Exception;
 }

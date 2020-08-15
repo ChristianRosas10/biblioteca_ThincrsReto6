@@ -5,9 +5,11 @@
  */
 package ejb;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Horarios2;
 
 /**
@@ -27,6 +29,22 @@ public class Horarios2Facade extends AbstractFacade<Horarios2> implements Horari
 
     public Horarios2Facade() {
         super(Horarios2.class);
+    }
+
+    @Override
+    public List<Horarios2> buscarHorario(int idUsuario) throws Exception {
+        List<Horarios2> horario = null;
+        String consulta;
+        
+        try{
+            consulta = "FROM Horarios2 h WHERE h.id.id = ?1";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, idUsuario);
+            horario = query.getResultList();
+        }catch(Exception e){
+            throw e;
+        }
+        return horario;
     }
     
 }

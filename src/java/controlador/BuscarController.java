@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import ejb.Horarios2FacadeLocal;
 import ejb.HorariosFacadeLocal;
 import ejb.UsuariosFacadeLocal;
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Horarios;
+import modelo.Horarios2;
 import modelo.Usuarios;
 
 /**
@@ -25,16 +27,20 @@ import modelo.Usuarios;
 @ViewScoped
 public class BuscarController implements Serializable {
 
-       @EJB
-       private UsuariosFacadeLocal usuariosEJB;
-       
-       @EJB
-       private HorariosFacadeLocal horariosEJB;
-       
-       private List<Usuarios> nusuarios;
-       private List<Horarios> nhorarios;
-       
-       private int codigoUsuario;
+    @EJB
+    private UsuariosFacadeLocal usuariosEJB;
+
+    @EJB
+    private HorariosFacadeLocal horariosEJB;
+
+    @EJB
+    private Horarios2FacadeLocal horarios2EJB;
+
+    private List<Usuarios> nusuarios;
+    private List<Horarios> nhorarios;
+    private List<Horarios2> nhorarios2;
+
+    private int codigoUsuario;
 
     public int getCodigoUsuario() {
         return codigoUsuario;
@@ -43,8 +49,6 @@ public class BuscarController implements Serializable {
     public void setCodigoUsuario(int codigoUsuario) {
         this.codigoUsuario = codigoUsuario;
     }
-       
-       
 
     public List<Usuarios> getNusuarios() {
         return nusuarios;
@@ -61,19 +65,35 @@ public class BuscarController implements Serializable {
     public void setNhorarios(List<Horarios> nhorarios) {
         this.nhorarios = nhorarios;
     }
-       
+
+    public List<Horarios2> getNhorarios2() {
+        return nhorarios2;
+    }
+
+    public void setNhorarios2(List<Horarios2> nhorarios2) {
+        this.nhorarios2 = nhorarios2;
+    }
     
-        
-       @PostConstruct
-       public void init(){
-           nusuarios = usuariosEJB.findAll();
-       }
-       
-       public void buscarHorario() throws Exception{
-           try{
-            nhorarios =  horariosEJB.buscarHorario(codigoUsuario);
-           }catch(Exception e){
-               throw e;
-           }
-       }
+    
+
+    @PostConstruct
+    public void init() {
+        nusuarios = usuariosEJB.findAll();
+    }
+
+    public void buscarHorario() throws Exception {
+        try {
+            nhorarios = horariosEJB.buscarHorario(codigoUsuario);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void buscarHorario2() throws Exception {
+        try {
+            nhorarios2 = horarios2EJB.buscarHorario(codigoUsuario);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }
