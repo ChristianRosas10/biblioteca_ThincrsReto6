@@ -1,0 +1,15 @@
+#principal{
+    width: 1024px;
+    margin: 0 auto;
+}
+
+#base{
+    margin: 50px auto;
+    width: 40%;
+    text-align: center;
+}
+#imagen{
+    margin: 0 auto;
+    width: 270px;
+    align-content: center;
+}

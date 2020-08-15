@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+            <h:head>
+                <h:outputScript library="js" name="spanishLocale.js"/>
+            </h:head>
+            <ui:define name="content">
+                <h1>Consulta entrada/salida</h1>
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Id/Usuario"/>
+                        <p:selectOneMenu value="#{buscarController.codigoUsuario}"  filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{buscarController.nusuarios}" var="us" itemLabel="#{us.id}, #{us.nombre}" itemValue="#{us.id}"/>
+                        </p:selectOneMenu>
+
+                        <p:commandButton icon="ui-icon-search" value="Buscar" update="lista" actionListener="#{buscarController.buscarHorario()}"/>
+                    </h:panelGrid>
+
+                    <p:dataList id="lista" emptyMessage="No hay resultados" value="#{buscarController.nhorarios}" var="hor" >
+                       Entrada #{hor.entrada} 
+                       Salida #{hor.entrada}
+                    </p:dataList>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
